@@ -5,22 +5,26 @@
 
 /* TODO: After modifying the original version, uncomment the following
  * line to set OPT properly */
-// #define OPT 1
-typedef struct __PHONE_BOOK_ENTRY {
-    char lastName[MAX_LAST_NAME_SIZE];
-    char firstName[16];
-    char email[16];
-    char phone[10];
-    char cell[10];
-    char addr1[16];
-    char addr2[16];
-    char city[16];
-    char state[2];
-    char zip[5];
-    struct __PHONE_BOOK_ENTRY *pNext;
-} entry;
+#define OPT      1
+#define DEGREE   64
 
-entry *findName(char lastName[], entry *pHead);
-entry *append(char lastName[], entry *e);
+
+typedef struct __ENTRY {
+    char lastName[MAX_LAST_NAME_SIZE];
+    struct __NODE *pNext;
+} bTreeEntry;
+
+typedef struct __NODE {
+    int degree;
+    bTreeEntry children[DEGREE];
+} bTreeNode;
+
+
+
+
+
+char *findName(char lastname[], bTreeNode *node, int ht);
+bTreeNode *append(char lastName[], bTreeNode *node, int *ht);
+
 
 #endif
